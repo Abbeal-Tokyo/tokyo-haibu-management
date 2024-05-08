@@ -9,7 +9,8 @@ export function GET(request: NextRequest): NextResponse {
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const body = await request.json();
-    const response = body.pong ?? 'No "pong" value provided in the request body';
+    const response =
+      body.pong ?? 'No "pong" value provided in the request body';
     return NextResponse.json({ response }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
