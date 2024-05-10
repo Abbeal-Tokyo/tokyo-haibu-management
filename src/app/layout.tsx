@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavButton from "@/app/components/nav-button";
 
+// TODO: use translation library
 export const metadata: Metadata = {
   title: "Tokyo Haibu Management",
   description: "Manage Tokyo hive !",
@@ -13,6 +14,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // TODO: use translation library
   return (
     <html lang="en">
       <body>
