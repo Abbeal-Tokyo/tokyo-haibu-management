@@ -1,5 +1,5 @@
-"use client"
+"use client";
 
 export default function Event() {
-    return <h1>I&apos;m EVENT PAGE</h1>
+  return <h1>I&apos;m EVENT PAGE</h1>;
 }
