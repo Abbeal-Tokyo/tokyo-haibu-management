@@ -36,16 +36,33 @@ RUN \
     else echo "Lockfile not found." && exit 1; \
     fi
 
+# Development stage
+FROM base AS development
+WORKDIR /app
+ENV NODE_ENV development
+
+RUN apk add --no-cache curl
+
+COPY --from=builder /app .
+
+CMD \
+    if [ -f yarn.lock ]; then yarn dev; \
+    elif [ -f package-lock.json ]; then npm run dev; \
+    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run dev; \
+    else echo "Lockfile not found." && exit 1; \
+    fi
+
+EXPOSE 3000
+
 # Production image, copy all the files and run next
 FROM base AS production
 WORKDIR /app
-
-RUN apk add --no-cache curl
 
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
+RUN apk add --no-cache curl
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
