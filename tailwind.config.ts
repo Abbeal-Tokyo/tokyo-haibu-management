@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-const defaultTheme = require("tailwindcss/defaultTheme")
 
 const config: Config = {
   content: [
@@ -10,17 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "background": "var(--background)",
-        "primary": "var(--primary)",
-        "secondary": "var(--secondary)",
-        "tertiary": "var(--tertiary)"
+        background: "var(--background)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        tertiary: "var(--tertiary)",
       },
       backgroundColor: {
-        "background": "var(--background)",
-        "primary": "var(--primary)",
-        "secondary": "var(--secondary)",
-        "tertiary": "var(--tertiary)"
-      }
+        background: "var(--background)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        tertiary: "var(--tertiary)",
+      },
     },
   },
   plugins: [],
