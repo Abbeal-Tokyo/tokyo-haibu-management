@@ -1,0 +1,6 @@
+{
+    "navigation": {
+        "testServer": "Translations works on server side!",
+        "testClient": "Translations works on client side!"
+    }
+}
