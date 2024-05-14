@@ -18,7 +18,7 @@ const config: Config = {
   // Add more setup options before each test is run
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   moduleNameMapper: {
-    "^@/components/(.*)$": "<rootDir>/src/components/$1"
+    "^@/components/(.*)$": "<rootDir>/src/components/$1",
   },
 };
 
