@@ -42,8 +42,11 @@ WORKDIR /app
 ENV NODE_ENV development
 
 RUN apk add --no-cache curl
+RUN yarn global add prisma
+RUN yarn global add dotenv-cli
 
-COPY --from=builder /app .
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 
 CMD \
     if [ -f yarn.lock ]; then yarn dev; \
