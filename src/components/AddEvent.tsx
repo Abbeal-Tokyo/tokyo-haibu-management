@@ -2,6 +2,16 @@
 
 import { createEvent } from "@/lib/actions/event";
 import { useRef } from "react";
+import { useFormStatus } from "react-dom";
+
+const AddButton = () => {
+  const { pending } = useFormStatus();
+  return pending ? (
+    <button disabled>Loading...</button>
+  ) : (
+    <button type="submit">Add</button>
+  );
+};
 
 export const AddEvent = () => {
   const ref = useRef<HTMLFormElement>(null);
@@ -17,7 +27,7 @@ export const AddEvent = () => {
       >
         <div className="flex flex-row gap-2">
           <input className="text-black" type="text" name="title" />
-          <button type="submit">Add</button>
+          <AddButton />
         </div>
       </form>
     </div>
