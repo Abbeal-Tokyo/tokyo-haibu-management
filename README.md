@@ -2,16 +2,29 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, install the required packages :
 
 ```bash
-npm run dev
-# or
+npm install yarn -g
+yarn global add prisma
+yarn global add dotenv-cli
+yarn install --ignore-scripts
+```
+
+Init Prisma and the local database :
+
+- Rename the `env.local.sample` to `env.local` and provide your local database configuration.
+
+- Run the following command to init the prisma schema and run the DDL tables creation scripts :
+
+```bash
+yarn db:init
+```
+
+Run the development server:
+
+```bash
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
