@@ -11,5 +11,5 @@ export const getEvents = async () => {
 export const createEvent = async (data: FormData) => {
   const title = data.get("title")?.toString();
   await prisma.event.create({ data: { title } });
-  revalidatePath("/");
+  revalidatePath("/events");
 };
