@@ -5,7 +5,8 @@ services:
       context: .
       target: development
     environment:
-      DATABASE_URL: postgresql://haibu:haibu@host.docker.internal:5433/haibu
+      POSTGRES_PRISMA_URL: postgresql://haibu:haibu@host.docker.internal:5433/haibu
+      POSTGRES_URL_NON_POOLING: postgresql://haibu:haibu@host.docker.internal:5433/haibu
     ports:
       - "3000:3000"
     networks:
