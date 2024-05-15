@@ -22,4 +22,3 @@ export default function NavButton({
     </Link>
   );
 }
-// px-[2%] py-[4%]
