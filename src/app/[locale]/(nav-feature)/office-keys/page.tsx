@@ -1,4 +1,6 @@
-// TODO: use translation library
+import { useTranslations } from "next-intl";
+
 export default function OfficeKeys() {
-  return <h1>I&apos;m OFFICE KEYS PAGE</h1>;
+  const t = useTranslations("officeKeys");
+  return <h1>{t("title")}</h1>;
 }

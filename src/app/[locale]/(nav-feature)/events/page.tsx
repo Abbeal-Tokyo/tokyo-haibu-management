@@ -1,4 +1,6 @@
-// TODO: use translation library
+import { useTranslations } from "next-intl";
+
 export default function Event() {
-  return <h1>I&apos;m EVENT PAGE</h1>;
+  const t = useTranslations("events");
+  return <h1>{t("title")}</h1>;
 }

@@ -1,6 +1,22 @@
 {
-    "navigation": {
-        "testServer": "Translations works on server side!",
-        "testClient": "Translations works on client side!"
-    }
+  "metadata": {
+    "title": "Tokyo Haibu Management",
+    "description": "Manage Tokyo hive !"
+  },
+  "navigation": {
+    "title": "Hive Manager",
+    "calendar": "CALENDAR",
+    "events": "EVENTS",
+    "office": "OFFICE",
+    "logout": "Log Out"
+  },
+  "calendar": {
+    "title": "I'M CALENDAR PAGE"
+  },
+  "events": {
+    "title": "I'M EVENTS PAGE"
+  },
+  "officeKeys": {
+    "title": "I'M OFFICE KEYS PAGE"
+  }
 }

@@ -1,4 +1,6 @@
-// TODO: use translation library
+import { useTranslations } from "next-intl";
+
 export default function Calendar() {
-  return <h1>I&apos;m CALENDAR PAGE</h1>;
+  const t = useTranslations("calendar");
+  return <h1>{t("title")}</h1>;
 }

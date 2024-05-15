@@ -1,7 +1,5 @@
-import type { Metadata } from "next";
-
 import "@/app/globals.css";
-import { unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { Navigation } from "@/components/navigation";
 
@@ -9,11 +7,16 @@ type Props = React.PropsWithChildren<{
   params: { locale: string };
 }>;
 
-// TODO: use translation library
-export const metadata: Metadata = {
-  title: "Tokyo Haibu Management",
-  description: "Manage Tokyo hive !",
-};
+export async function generateMetadata({
+  params: { locale },
+}: Omit<Props, "children">) {
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  return {
+    title: t("title"),
+    description: t("description"),
+  };
+}
 
 export default function RootLayout({
   params: { locale },
