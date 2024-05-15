@@ -2,6 +2,7 @@
   "name": "tokyo-haibu-management",
   "version": "0.1.0",
   "private": true,
+
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +10,8 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "db:migrate": "dotenv -e .env.development -- npx prisma migrate dev",
+    "db:migrate": "dotenv -e ./prisma/.env.development -- npx prisma migrate dev",
+    "db:generate": "dotenv -e ./prisma/.env.development -- npx prisma generate",
     "postinstall": "prisma generate"
   },
   "dependencies": {
