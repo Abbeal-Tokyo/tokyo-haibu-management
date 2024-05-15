@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import NavButton from "./NavButton";
+import Nav from "./Nav";
 
 export const Navigation = ({ children }: React.PropsWithChildren) => {
   const t = useTranslations("navigation");
@@ -9,16 +9,15 @@ export const Navigation = ({ children }: React.PropsWithChildren) => {
         <header className="basis-2/12">
           <h2 className="text-center">{t("title")}</h2>
         </header>
-        {/* Include shared UI here e.g. a header or sidebar */}
-        <nav className="flex flex-col basis-8/12 grow gap-y-[10%] ml-10">
-          <NavButton href="/calendar">{t("calendar")}</NavButton>
-          <NavButton className="bg-tertiary" href="/events">
-            {t("events")}
-          </NavButton>
-          <NavButton className="bg-tertiary" href="/office-keys">
-            {t("office")}
-          </NavButton>
-        </nav>
+        {/*  Used recommendation from https://react.dev/reference/react/Children#accepting-an-array-of-objects-as-a-prop */}
+        <Nav
+          className="flex flex-col basis-8/12 grow gap-y-[10%] ml-10"
+          navButtons={[
+            { id: 1, href: "/calendar", content: <>{t("calendar")}</> },
+            { id: 2, href: "/events", content: <>{t("events")}</> },
+            { id: 3, href: "/office-keys", content: <>{t("office")}</> },
+          ]}
+        ></Nav>
         <footer className="flex items-center content-center	flex-auto">
           <button className="m-auto">{t("logout")}</button>
         </footer>
