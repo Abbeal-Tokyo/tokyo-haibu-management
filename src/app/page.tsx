@@ -1,6 +1,6 @@
 import { getEvents } from "@/lib/actions/event";
 import Image from "next/image";
-import { AddEvent } from "./components/AddEvent";
+import { AddEvent } from "@/components/AddEvent";
 
 const Events = async () => {
   const events = await getEvents();
