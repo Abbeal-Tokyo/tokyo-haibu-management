@@ -1,5 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Nav } from "./Nav";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons/faRightFromBracket";
 
 export const Navigation = ({ children }: React.PropsWithChildren) => {
   const t = useTranslations("navigation");
@@ -19,7 +21,14 @@ export const Navigation = ({ children }: React.PropsWithChildren) => {
           ]}
         ></Nav>
         <footer className="flex items-center content-center	flex-auto">
-          <button className="m-auto">{t("logout")}</button>
+          {/* TO DO: decide on ICON library */}
+          <button className="m-auto">
+            <FontAwesomeIcon
+              className="inline w-6 h-6"
+              icon={faRightFromBracket}
+            />
+            {t("logout")}
+          </button>
         </footer>
       </section>
       <section className="basis-10/12 bg-white p-14">{children}</section>

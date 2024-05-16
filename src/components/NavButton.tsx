@@ -15,18 +15,16 @@ export const NavButton = ({
   href,
   onClick,
   className,
-}: NavButtonProps) => {
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      className={clsx(
-        "rounded-tl-lg rounded-bl-lg px-4 py-2 text-center text-white bg-secondary hover:scale-up-center",
-        className,
-      )}
-    >
-      {children}
-    </Link>
-  );
-};
+}: NavButtonProps) => (
+  <Link
+    href={href}
+    onClick={onClick}
+    className={clsx(
+      "rounded-tl-lg rounded-bl-lg px-4 py-2 text-center text-white bg-secondary hover:scale-up-center",
+      className,
+    )}
+  >
+    {children}
+  </Link>
+);
 // px-[2%] py-[4%]
