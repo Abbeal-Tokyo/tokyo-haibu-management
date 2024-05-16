@@ -6,7 +6,7 @@ export const Navigation = ({ children }: React.PropsWithChildren) => {
   return (
     <main className="flex h-full bg-background">
       <section className="flex flex-col basis-2/12">
-        <header className="basis-2/12">
+        <header className="flex justify-center items-center basis-2/12">
           <h2 className="text-center">{t("title")}</h2>
         </header>
         {/*  Used recommendation from https://react.dev/reference/react/Children#accepting-an-array-of-objects-as-a-prop */}
