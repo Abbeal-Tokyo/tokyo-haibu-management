@@ -13,6 +13,13 @@
     "sort-imports": ["error", { "ignoreDeclarationSort": true }],
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/consistent-type-imports": "error",
-    "no-irregular-whitespace": "off"
+    "no-irregular-whitespace": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
   }
 }

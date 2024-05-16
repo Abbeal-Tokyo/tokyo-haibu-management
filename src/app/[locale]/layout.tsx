@@ -1,8 +1,8 @@
 import "@/app/globals.css";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider, useMessages } from "next-intl";
-import { Navigation } from "@/components/Navigation";
 import { Inria_Sans } from "next/font/google";
+import { Navigation } from "@/components/Navigation";
 
 const inria = Inria_Sans({ subsets: ["latin"], weight: "400" });
 
@@ -21,10 +21,7 @@ export async function generateMetadata({
   };
 }
 
-export default function RootLayout({
-  params: { locale },
-  children,
-}: Readonly<Props>) {
+const RootLayout = ({ params: { locale }, children }: Readonly<Props>) => {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
@@ -38,4 +35,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

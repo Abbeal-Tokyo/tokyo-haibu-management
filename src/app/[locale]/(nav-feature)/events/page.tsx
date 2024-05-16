@@ -1,6 +1,8 @@
 import { useTranslations } from "next-intl";
 
-export default function Event() {
+export const Event = () => {
   const t = useTranslations("events");
   return <h1>{t("title")}</h1>;
-}
+};
+
+export default Event;

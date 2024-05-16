@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import Nav from "./Nav";
+import { Nav } from "./Nav";
 
 export const Navigation = ({ children }: React.PropsWithChildren) => {
   const t = useTranslations("navigation");

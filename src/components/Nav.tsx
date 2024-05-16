@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import NavButton from "./NavButton";
+import { NavButton } from "./NavButton";
 import { usePathname } from "next/navigation";
 
 type NavProps = Readonly<{
@@ -9,10 +9,7 @@ type NavProps = Readonly<{
 }> &
   React.ComponentPropsWithRef<"nav">;
 
-export default function Nav({
-  className,
-  navButtons,
-}: NavProps): React.JSX.Element {
+export const Nav = ({ className, navButtons }: NavProps) => {
   const pathname = usePathname();
   const defaultCurrent =
     navButtons.find((navButton) => pathname.includes(navButton.href))?.id || 0;
@@ -38,4 +35,4 @@ export default function Nav({
       ))}
     </nav>
   );
-}
+};

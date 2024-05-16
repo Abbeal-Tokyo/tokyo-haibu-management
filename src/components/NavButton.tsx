@@ -10,12 +10,12 @@ type NavButtonProps = Readonly<{
 }> &
   React.ComponentPropsWithRef<"button">;
 
-export default function NavButton({
+export const NavButton = ({
   children,
   href,
   onClick,
   className,
-}: NavButtonProps) {
+}: NavButtonProps) => {
   return (
     <Link
       href={href}
@@ -28,5 +28,5 @@ export default function NavButton({
       {children}
     </Link>
   );
-}
+};
 // px-[2%] py-[4%]
