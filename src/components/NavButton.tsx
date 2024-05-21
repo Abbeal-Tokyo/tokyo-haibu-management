@@ -1,30 +1,29 @@
 "use client";
 import Link from "next/link";
-import type { MouseEventHandler, ReactNode } from "react";
+import type { ReactNode } from "react";
 import clsx from "clsx";
 
 type NavButtonProps = Readonly<{
+  active: boolean;
   children: ReactNode;
   href: string;
-  onClick?: MouseEventHandler | undefined;
 }> &
   React.ComponentPropsWithRef<"button">;
 
 export const NavButton = ({
+  active = false,
   children,
   href,
-  onClick,
   className,
 }: NavButtonProps) => (
   <Link
     href={href}
-    onClick={onClick}
     className={clsx(
       "rounded-tl-lg rounded-bl-lg px-4 py-2 text-center text-white bg-secondary hover:scale-up-center",
+      { "bg-tertiary": active },
       className,
     )}
   >
     {children}
   </Link>
 );
-// px-[2%] py-[4%]
