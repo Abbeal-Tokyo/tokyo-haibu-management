@@ -33,6 +33,13 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
+## Naming convention
+
+components file name -> PascalCase
+components function name -> PascalCase
+next.js page and layout file name -> standard
+next.js page and layout function name -> PascalCase
+
 ## Running the Application with Docker
 
 Before running the application, ensure that Docker and Docker Compose are installed on your machine.

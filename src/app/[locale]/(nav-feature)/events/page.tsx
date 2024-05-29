@@ -2,7 +2,7 @@ import { AddEvent } from "@/components/AddEvent";
 import { EventsList } from "@/components/EventsList";
 import { useTranslations } from "next-intl";
 
-export default function Event() {
+const Event = () => {
   const t = useTranslations("events");
   return (
     <div className="flex flex-col gap-4">
@@ -11,4 +11,6 @@ export default function Event() {
       <EventsList />
     </div>
   );
-}
+};
+
+export default Event;
