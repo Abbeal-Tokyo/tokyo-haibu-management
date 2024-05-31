@@ -10,7 +10,8 @@ import {
 import type { Event, View } from "react-big-calendar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons/faCalendarDays";
-
+import { CalendarToolbar } from "@/components/CalendarToolbar";
+import type { BCalendarView } from "@/components/BCalendarView";
 // import jaLocal from "dayjs/locale/ja";
 // import frLocal from "dayjs/locale/fr";
 
@@ -20,7 +21,7 @@ const localizer = dayjsLocalizer(dayjs);
 // TO DO : DECOMPOSE BCALENDAR BEHAVIOR TO COMPONENT
 const Calendar = () => {
   const t = useTranslations("calendar");
-  type ViewArray = (typeof Views)[keyof typeof Views][];
+  type ViewArray = BCalendarView[];
   const { views }: { views: ViewArray } = useMemo(
     () => ({
       views: [Views.MONTH, Views.WEEK, Views.DAY],
@@ -45,12 +46,12 @@ const Calendar = () => {
 
   const onNavigate = useCallback(
     (newDate: Date) => {
-      console.log("Navigate");
+      console.log("Navigate to : ", newDate);
       setDate(newDate);
     },
     [setDate],
   );
-  const onViewButtonClicked = useCallback(
+  const onViewChange = useCallback(
     (newView: View) => {
       console.log("on View : ", newView);
       setView(newView);
@@ -59,7 +60,7 @@ const Calendar = () => {
   );
 
   return (
-    <div>
+    <>
       <header>
         <h1 className="text-nowrap">
           <FontAwesomeIcon
@@ -69,7 +70,14 @@ const Calendar = () => {
           {t("title")}
         </h1>
       </header>
+      <CalendarToolbar
+        view={view}
+        date={date}
+        onNavigate={onNavigate}
+        onViewChange={onViewChange}
+      ></CalendarToolbar>
       <BCalendar
+        toolbar={false}
         date={date}
         localizer={localizer}
         events={eventList}
@@ -78,10 +86,8 @@ const Calendar = () => {
         style={{ height: 500 }}
         view={view}
         views={views}
-        onNavigate={onNavigate}
-        onView={onViewButtonClicked}
       />
-    </div>
+    </>
   );
 };
 

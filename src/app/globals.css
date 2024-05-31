@@ -9,6 +9,7 @@
     --primary: #144F4F;
     --secondary: #42b296;
     --tertiary: #b5d6b5; 
+    --gray: #EAEAEA;
     --background: #f4f5f7;
   }
 }
@@ -18,14 +19,12 @@
     --primary: #144F4F;
     --secondary: #42b296;
     --tertiary: #b5d6b5;
+    --gray: #EAEAEA;
     --background: #f4f5f7;
   }
 }
 
 @layer base {
-  /* html {
-    font-family: "Inria Sans";
-  } */
   body, html {
     /* Reset body to take all viewport size */
     margin: 0;
@@ -55,6 +54,30 @@
             animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   }
 }
+
+/* overide calendar */
+.rbc-calendar {
+  height: 95% !important;
+}
+
+/** CUSTOM Class */
+@layer components {
+  .calendar-views-radio:focus-visible + label {
+    /* Apply styles to the label when the associated radio input is checked */
+    border: 2px black solid
+  }
+  .calendar-views-radio:checked + label {
+    /* Apply styles to the label when the associated radio input is checked */
+    @apply rounded-2xl;
+    display: inline-block;
+    color: white;
+    background-color: var(--tertiary);
+    opacity: 100;
+    animation: scale-2x 0.1s linear forwards;
+    z-index: 1;
+  }
+
+}
 /**
  * ----------------------------------------
  * animation scale-up-center
@@ -78,6 +101,17 @@
   100% {
     -webkit-transform: scale(1);
             transform: scale(1);
+  }
+}
+
+@keyframes scale-2x {
+  from {
+    /* Define the initial state of the element */
+    transform: scale(1);
+  }
+  to {
+    /* Define the final state of the element */
+    transform: scale(1.2);
   }
 }
 

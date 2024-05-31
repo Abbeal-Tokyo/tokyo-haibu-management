@@ -31,7 +31,9 @@ export const Navigation = ({ children }: React.PropsWithChildren) => {
           </button>
         </footer>
       </section>
-      <section className="basis-10/12 bg-white p-[5%]">{children}</section>
+      <section className="basis-10/12 overflow-scroll	bg-white p-[5%]">
+        {children}
+      </section>
     </main>
   );
 };
