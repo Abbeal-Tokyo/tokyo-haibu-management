@@ -44,10 +44,10 @@ next.js page and layout function name -> PascalCase
 
 Before running the application, ensure that Docker and Docker Compose are installed on your machine.
 
-To launch the application along with the CrateDB database, you can use the following command:
+To launch the application along with the Postgre database, you can use the following command:
 
 ```bash
 docker-compose up
 ```
 
-This command will spin up the environment with Next.js application and CrateDB database.
+This command will spin up the environment with Next.js application and Postgre database.
