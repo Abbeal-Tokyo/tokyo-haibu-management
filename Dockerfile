@@ -8,14 +8,8 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
-COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-RUN \
-    if [ -f yarn.lock ]; then yarn --immutable; \
-    elif [ -f package-lock.json ]; then npm ci; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm i --frozen-lockfile; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
-
+COPY package.json ./
+RUN yarn
 
 # Rebuild the source code only when needed
 FROM base AS builder
@@ -29,12 +23,7 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-RUN \
-    if [ -f yarn.lock ]; then yarn run build; \
-    elif [ -f package-lock.json ]; then npm run build; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run build; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+RUN yarn run build
 
 # Development stage
 FROM base AS development
@@ -42,15 +31,13 @@ WORKDIR /app
 ENV NODE_ENV development
 
 RUN apk add --no-cache curl
+RUN yarn global add prisma
+RUN yarn global add dotenv-cli
 
-COPY --from=builder /app .
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 
-CMD \
-    if [ -f yarn.lock ]; then yarn dev; \
-    elif [ -f package-lock.json ]; then npm run dev; \
-    elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm run dev; \
-    else echo "Lockfile not found." && exit 1; \
-    fi
+CMD yarn dev
 
 EXPOSE 3000
 

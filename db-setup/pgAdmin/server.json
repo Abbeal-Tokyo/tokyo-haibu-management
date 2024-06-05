@@ -1,0 +1,14 @@
+{
+    "Servers": {
+      "1": {
+        "Name": "haibu_docker",
+        "Group": "Servers",
+        "Host": "host.docker.internal",
+        "Port": 5433,
+        "MaintenanceDB": "haibu",
+        "Username": "haibu",
+        "PassFile": "/var/lib/pgadmin/pgpass",
+        "SSLMode": "prefer"
+      }
+    }
+  }

@@ -2,16 +2,29 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, install the required packages :
 
 ```bash
-npm run dev
-# or
+npm install yarn -g
+yarn global add prisma
+yarn global add dotenv-cli
+yarn install
+```
+
+Init Prisma and the local database :
+
+- Rename the `env.local.sample` to `env.local` and provide your local database configuration.
+
+- Run the following command to init the prisma schema and run the DDL tables creation scripts :
+
+```bash
+yarn db:init
+```
+
+Run the development server:
+
+```bash
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -31,10 +44,10 @@ next.js page and layout function name -> PascalCase
 
 Before running the application, ensure that Docker and Docker Compose are installed on your machine.
 
-To launch the application along with the CrateDB database, you can use the following command:
+To launch the application along with the Postgre database, you can use the following command:
 
 ```bash
 docker-compose up
 ```
 
-This command will spin up the environment with Next.js application and CrateDB database.
+This command will spin up the environment with Next.js application and Postgre database.
