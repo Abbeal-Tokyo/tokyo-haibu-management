@@ -8,7 +8,7 @@ First, install the required packages :
 npm install yarn -g
 yarn global add prisma
 yarn global add dotenv-cli
-yarn install --ignore-scripts
+yarn install
 ```
 
 Init Prisma and the local database :

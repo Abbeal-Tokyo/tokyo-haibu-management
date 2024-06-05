@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Install dependencies based on the preferred package manager
 COPY package.json ./
-RUN yarn --ignore-scripts
+RUN yarn
 
 # Rebuild the source code only when needed
 FROM base AS builder
