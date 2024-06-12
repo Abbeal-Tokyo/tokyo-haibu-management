@@ -16,13 +16,13 @@ services:
     depends_on:
       - db
     entrypoint: ["/bin/sh", "-c", "yarn db:init && yarn dev"]
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/ping || exit 1"]
-      interval: 60s
-      timeout: 10s
-      retries: 5
-      start_period: 15s
-      start_interval: 5s
+    # healthcheck:
+    #   test: ["CMD-SHELL", "curl -f http://localhost:3000/api/ping || exit 1"]
+    #   interval: 60s
+    #   timeout: 10s
+    #   retries: 5
+    #   start_period: 15s
+    #   start_interval: 5s
   db:
     container_name: haibu_db
     image: postgres:latest
