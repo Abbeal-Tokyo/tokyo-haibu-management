@@ -1,0 +1,69 @@
+services:
+  app:
+    container_name: haibu_app
+    build:
+      context: .
+      target: development
+    environment:
+      POSTGRES_PRISMA_URL: postgresql://haibu:haibu@host.docker.internal:5433/haibu
+      POSTGRES_URL_NON_POOLING: postgresql://haibu:haibu@host.docker.internal:5433/haibu
+    ports:
+      - "3000:3000"
+    networks:
+      - haibu_network
+    volumes:
+      - .:/haibu_data
+    depends_on:
+      - db
+    entrypoint: ["/bin/sh", "-c", "yarn db:init && yarn dev"]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:3000/api/ping || exit 1"]
+      interval: 60s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+      start_interval: 5s
+  db:
+    container_name: haibu_db
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: haibu
+      POSTGRES_USER: haibu
+      POSTGRES_PASSWORD: haibu
+    ports:
+      - "5433:5432"
+    networks:
+      - haibu_network
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+  pg_admin:
+    container_name: haibu_pg_admin
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: haibu@abbeal.com
+      PGADMIN_DEFAULT_PASSWORD: haibu
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    ports:
+      - "4200:80"
+    depends_on:
+      - db
+    volumes:
+      - ./db-setup/pgAdmin/server.json:/pgadmin4/servers.json
+      - ./db-setup/pgAdmin/pgpass:/pgadmin4/pgpass
+    entrypoint: >
+      /bin/sh -c "
+      cp -f /pgadmin4/pgpass /var/lib/pgadmin/;
+      chmod 600 /var/lib/pgadmin/pgpass;
+      chown pgadmin:pgadmin /var/lib/pgadmin/pgpass;
+      /entrypoint.sh
+      "
+
+volumes:
+  postgres_data:
+  pg_admin_data:
+  haibu_data:
+
+networks:
+  haibu_network:
+    driver: bridge

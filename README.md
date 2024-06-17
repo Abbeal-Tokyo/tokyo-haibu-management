@@ -2,16 +2,29 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, install the required packages :
 
 ```bash
-npm run dev
-# or
+npm install yarn -g
+yarn global add prisma
+yarn global add dotenv-cli
+yarn install
+```
+
+Init Prisma and the local database :
+
+- Rename the `env.local.sample` to `env.local` and provide your local database configuration.
+
+- Run the following command to init the prisma schema and run the DDL tables creation scripts :
+
+```bash
+yarn db:init
+```
+
+Run the development server:
+
+```bash
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -20,17 +33,23 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+APIs documentation is available on  [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 
-To learn more about Next.js, take a look at the following resources:
+## Naming convention
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+components file name -> PascalCase
+components function name -> PascalCase
+next.js page and layout file name -> standard
+next.js page and layout function name -> PascalCase
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Running the Application with Docker
 
-## Deploy on Vercel
+Before running the application, ensure that Docker and Docker Compose are installed on your machine.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To launch the application along with the Postgre database, you can use the following command:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+docker-compose up
+```
+
+This command will spin up the environment with Next.js application and Postgre database.

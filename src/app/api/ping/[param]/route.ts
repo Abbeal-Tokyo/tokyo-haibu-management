@@ -23,7 +23,7 @@ import { NextResponse } from "next/server";
  *               example: {"response": "pong"}
  */
 export function GET(
-  request: NextRequest,
+  _: NextRequest,
   context: { params: { param: string } },
 ): NextResponse {
   const pathVariable = context.params.param;

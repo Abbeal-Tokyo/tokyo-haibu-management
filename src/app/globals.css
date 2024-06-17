@@ -1,33 +1,87 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+  :root {
+    --primary: #144F4F;
+    --secondary: #42b296;
+    --tertiary: #b5d6b5; 
+    --background: #f4f5f7;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --primary: #144F4F;
+    --secondary: #42b296;
+    --tertiary: #b5d6b5;
+    --background: #f4f5f7;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  /* html {
+    font-family: "Inria Sans";
+  } */
+  body, html {
+    /* Reset body to take all viewport size */
+    margin: 0;
+    padding: 0;
+    height: 100%;  
+    color: var(--primary);
+    background-color: var(--background);
+  }
+  /* TO DO : FONT SIZE BASED ON SCREEN SIZE*/ 
+  h1 {
+    font-weight: 600;
+    font-size: 1.7em;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 1.3em;
+  }
+  body {
+    /* Default app Color */ 
+    color: var(--primary);
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  .scale-up-center {
+    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+            animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  }
 }
+/**
+ * ----------------------------------------
+ * animation scale-up-center
+ * ----------------------------------------
+ */
+ @-webkit-keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.98);
+            transform: scale(0.98);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+
+

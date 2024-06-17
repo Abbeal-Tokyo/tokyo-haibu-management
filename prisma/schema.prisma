@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model event {
+  event_id            BigInt       @id @default(autoincrement())
+  title               String?      @db.VarChar
+  start_date          DateTime?    @db.Timestamp(6)
+  end_date            DateTime?    @db.Timestamp(6)
+  invitation_due_time DateTime?    @db.Timestamp(6)
+  location            String?      @db.VarChar
+  color               String?      @db.VarChar
+  invitation          invitation[]
+}
+
+model event_type {
+  event_type_id BigInt  @id @default(autoincrement())
+  type_name     String? @db.VarChar
+}
+
+model invitation {
+  event_id BigInt
+  user_id  BigInt
+  status   String? @db.VarChar
+  event    event   @relation(fields: [event_id], references: [event_id], onDelete: NoAction, onUpdate: NoAction)
+  users    users   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([user_id, event_id])
+}
+
+model location {
+  location_id  BigInt         @id @default(autoincrement())
+  title        String?        @db.VarChar
+  address      String?        @db.VarChar
+  link_to_map  String?        @db.VarChar
+  location_tag location_tag[]
+  rating       rating[]
+}
+
+model location_tag {
+  location_id BigInt
+  tag_id      BigInt
+  location    location @relation(fields: [location_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction)
+  tag         tag      @relation(fields: [tag_id], references: [tag_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([location_id, tag_id])
+}
+
+model rating {
+  location_id BigInt
+  user_id     BigInt
+  rate        Float?
+  comments    String?   @db.VarChar
+  last_update DateTime? @db.Timestamp(6)
+  location    location  @relation(fields: [location_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction)
+  users       users     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([location_id, user_id])
+}
+
+model tag {
+  tag_id       BigInt         @id @default(autoincrement())
+  title        String?        @db.VarChar
+  location_tag location_tag[]
+}
+
+model users {
+  user_id    BigInt       @id @default(autoincrement())
+  sub        String?      @db.VarChar
+  first_name String?      @db.VarChar
+  last_name  String?      @db.VarChar
+  email      String?      @db.VarChar
+  status     String?      @db.VarChar
+  invitation invitation[]
+  rating     rating[]
+}
