@@ -31,9 +31,9 @@ export const CalendarToolbar = ({
   const subtitle = useMemo(() => dayjs(date).format("MMMM"), [date]);
   const viewButtons = useMemo(
     () => [
-      { label: "Month", value: Views.MONTH },
-      { label: "Day", value: Views.DAY },
-      { label: "Week", value: Views.WEEK },
+      { id: 1, label: "Month", value: Views.MONTH },
+      { id: 2, label: "Day", value: Views.DAY },
+      { id: 3, label: "Week", value: Views.WEEK },
     ],
     [],
   );
@@ -91,10 +91,9 @@ export const CalendarToolbar = ({
         </section>
       </header>
       <div className="flex items-end justify-end">
-        {viewButtons.map(({ label, value }, index) => (
-          <>
+        {viewButtons.map(({ id, label, value }) => (
+          <div key={id}>
             <input
-              key={value + index}
               className="calendar-views-radio appearance-none"
               type="radio"
               id={value}
@@ -104,13 +103,12 @@ export const CalendarToolbar = ({
               onFocus={() => onViewButtonFocused(value)}
             ></input>
             <label
-              key={value + index}
               className="px-3 py-2 text-center bg-background opacity-40"
               htmlFor={value}
             >
               {label}
             </label>
-          </>
+          </div>
         ))}
       </div>
     </section>
