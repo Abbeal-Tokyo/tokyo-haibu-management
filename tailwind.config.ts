@@ -14,6 +14,8 @@ const config: Config = {
         secondary: "var(--secondary)",
         tertiary: "var(--tertiary)",
         gray: "var(--gray)",
+        event1: "var(--event1)",
+        event2: "var(--event2)",
       },
       backgroundColor: {
         background: "var(--background)",
@@ -21,6 +23,8 @@ const config: Config = {
         secondary: "var(--secondary)",
         tertiary: "var(--tertiary)",
         gray: "var(--gray)",
+        event1: "var(--event1)",
+        event2: "var(--event2)",
       },
     },
   },

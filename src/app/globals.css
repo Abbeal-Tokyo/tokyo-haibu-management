@@ -10,6 +10,8 @@
     --secondary: #42b296;
     --tertiary: #b5d6b5;
     --gray: #eaeaea;
+    --event1: #d6b5b5cc;
+    --event2: #b5ced6cc;
     --background: #f4f5f7;
   }
 }
@@ -20,6 +22,8 @@
     --secondary: #42b296;
     --tertiary: #b5d6b5;
     --gray: #eaeaea;
+    --event1: #d6b5b5cc;
+    --event2: #b5ced6cc;
     --background: #f4f5f7;
   }
 }
@@ -57,9 +61,64 @@
   }
 }
 
-/* overide calendar */
+/* OVERRIDE React BigCalendar */
+/*
+rbc-calendar
+-rbc-month-view
+
+--rbc-month-header
+---rbc-header
+----CUSTOMIZED BCalendarMonthHeader (props header)
+
+--rbc-month-row
+---rbc-row-bg
+----rbc-day-bg
+---rbc-row-content
+----rbc-row
+-----rbc-date-cell
+------CUSTOMIZED BCalendarMonthDateHeader (props dateHeader)
+-----rbc-row-segment
+------rbc-event
+-------rbc-event-content
+--------CUSTOMIZED BCalendarMonthEvent (props event)
+*/
+
+/* Global */
 .rbc-calendar {
   height: 95% !important;
+}
+.rbc-month-view {
+  /** remove global border inside the calendar, to remove completly trace of border in calendar header (eg Thuesday, Wednesday...)*/
+  border: none;
+}
+.rbc-month-view .rbc-header + .rbc-header {
+  /** remove border inside the calendar header for day (eg Thuesday, Wednesday...) */
+  border-left: none;
+}
+.rbc-month-row {
+  /** compensante removing the global border by putting this */
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+
+/** for border to show up need to set z-index*/
+.rbc-month-view .rbc-row-bg {
+  z-index: 1;
+}
+.rbc-month-view .rbc-row-content {
+  z-index: 0;
+}
+.rbc-month-view .rbc-date-cell {
+  /* BCalendarMonthDateHeader background color */
+  background-color: var(--background);
+}
+.rbc-row-segment {
+  /* BCalendarMonthEvent dimension */
+  /* padding: 0 0.25rem;
+  margin-top: 0.25rem; */
+}
+.rbc-off-range {
+  /* display: none; */
 }
 
 /** CUSTOM Class */
