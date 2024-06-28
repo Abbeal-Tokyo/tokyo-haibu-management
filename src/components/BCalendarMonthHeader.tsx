@@ -1,5 +1,3 @@
-"use client";
-
 import { useMemo } from "react";
 import dayjs from "dayjs";
 import type { Components } from "react-big-calendar";

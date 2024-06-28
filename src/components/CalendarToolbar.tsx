@@ -1,5 +1,4 @@
-"use client";
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
@@ -7,16 +6,12 @@ import { Views } from "react-big-calendar";
 import dayjs from "dayjs";
 
 import type { View } from "react-big-calendar";
-import type { BCalendarView } from "./BCalendarView";
-import type { ManipulateType } from "dayjs";
-
-// import Link from "next/link";
-// import type { ReactNode } from "react";
-// import clsx from "clsx";
+import type { BCalendarViews } from "./BCalendarViews";
+import type { ManipulateType as DayJSManipulateType } from "dayjs";
 
 type CalendarProps = Readonly<{
   date: Date;
-  view: BCalendarView;
+  view: BCalendarViews;
   onNavigate: (newDate: Date) => void;
   onViewChange: (newView: View) => void;
 }>;
@@ -29,44 +24,30 @@ export const CalendarToolbar = ({
 }: CalendarProps) => {
   const title = useMemo(() => dayjs(date).format("YYYY"), [date]);
   const subtitle = useMemo(() => dayjs(date).format("MMMM"), [date]);
-  const viewButtons = useMemo(
-    () => [
-      { id: 1, label: "Month", value: Views.MONTH },
-      { id: 2, label: "Day", value: Views.DAY },
-      { id: 3, label: "Week", value: Views.WEEK },
-    ],
-    [],
-  );
+  const dateType = new Map<BCalendarViews, DayJSManipulateType>([
+    ["week", "week"],
+    ["month", "month"],
+    ["day", "day"],
+  ]);
+  const viewButtons = [
+    { id: 1, label: "Month", value: Views.MONTH },
+    { id: 2, label: "Day", value: Views.DAY },
+    { id: 3, label: "Week", value: Views.WEEK },
+  ];
   const viewRadioGroupName = "views";
-  const onViewButtonFocused = useCallback(
-    (selectedView: BCalendarView) => onViewChange(selectedView),
-    [onViewChange],
-  );
-  const onNavigateButtonClick = useCallback(
-    (action: "back" | "forward") => {
-      let type: ManipulateType = "month";
-      // could have just passed view value but, as it is two different library (dayjs and Bigcalendar)...
-      // I prefered to map
-      console.log("view action", view);
-      switch (view) {
-        case "month":
-          type = "month";
-          break;
-        case "day":
-          type = "day";
-          break;
-        case "week":
-          type = "week";
-          break;
-      }
-      const newDate =
-        action === "back"
-          ? dayjs(date).subtract(1, type).toDate()
-          : dayjs(date).add(1, type).toDate();
-      onNavigate(newDate);
-    },
-    [date, view, onNavigate],
-  );
+  const onViewButtonFocused = (selectedView: BCalendarViews) =>
+    onViewChange(selectedView);
+  const onNavigateButtonClick = (action: "back" | "forward") => {
+    const type = dateType.get(view);
+    // could have just passed view value but, as it is two different library (dayjs and React BigCalendar)...
+    // I prefered to map
+    if (!type) console.error("onNavigateButtonClick - type does not exist");
+    const newDate =
+      action === "back"
+        ? dayjs(date).subtract(1, type).toDate()
+        : dayjs(date).add(1, type).toDate();
+    onNavigate(newDate);
+  };
   return (
     <section className="grid grid-cols-3 mb-5">
       <header className="col-start-2 flex flex-col items-center gap-y-4">

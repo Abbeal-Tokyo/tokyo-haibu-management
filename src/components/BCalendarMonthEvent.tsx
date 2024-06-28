@@ -1,5 +1,3 @@
-"use client";
-
 import { useMemo } from "react";
 import dayjs from "dayjs";
 import type { Components } from "react-big-calendar";
@@ -11,7 +9,6 @@ export const BCalendarMonthEvent = ({
   title,
 }: BCalendarMonthEventProps) => {
   const startDate = event.start;
-  console.log("startDate : ", startDate);
   const startDateDisplayed = useMemo(
     () => (startDate ? dayjs(startDate).format("HH:mm") : null),
     [startDate],

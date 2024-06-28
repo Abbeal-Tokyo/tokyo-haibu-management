@@ -11,7 +11,7 @@ import type { CalendarProps, Event, View } from "react-big-calendar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons/faCalendarDays";
 import { CalendarToolbar } from "@/components/CalendarToolbar";
-import type { BCalendarView } from "@/components/BCalendarView";
+import type { BCalendarViews } from "@/components/BCalendarViews";
 import { BCalendarMonthHeader } from "@/components/BCalendarMonthHeader";
 import { BCalendarMonthDateHeader } from "@/components/BCalendarMonthDateHeader";
 import { BCalendarMonthEvent } from "@/components/BCalendarMonthEvent";
@@ -27,7 +27,7 @@ const localizer = dayjsLocalizer(dayjs);
 // TO DO : DECOMPOSE BCALENDAR BEHAVIOR TO COMPONENT
 const Calendar = () => {
   const t = useTranslations("calendar");
-  type ViewArray = BCalendarView[];
+  type ViewArray = BCalendarViews[];
   const { views }: { views: ViewArray } = useMemo(
     () => ({
       views: [Views.MONTH, Views.WEEK, Views.DAY],
@@ -67,14 +67,12 @@ const Calendar = () => {
   );
   const onNavigate = useCallback(
     (newDate: Date) => {
-      console.log("Navigate to : ", newDate);
       setDate(newDate);
     },
     [setDate],
   );
   const onViewChange = useCallback(
     (newView: View) => {
-      console.log("on View : ", newView);
       setView(newView);
     },
     [setView],

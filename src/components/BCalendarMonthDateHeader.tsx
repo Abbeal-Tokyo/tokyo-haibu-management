@@ -1,5 +1,3 @@
-"use client";
-
 import type { Components } from "react-big-calendar";
 type BCalendarMonthDateHeaderProps = React.ComponentProps<
   NonNullable<NonNullable<Components["month"]>["dateHeader"]>
