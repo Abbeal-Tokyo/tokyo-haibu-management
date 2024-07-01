@@ -90,10 +90,6 @@
   background-color: var(--background);
 }
 
-.rbc-off-range {
-  /* display: none; */
-}
-
 /** CUSTOM Class */
 @layer components {
   .calendar-views-radio + label {
