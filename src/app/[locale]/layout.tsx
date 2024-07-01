@@ -1,10 +1,7 @@
 import "@/app/globals.css";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider, useMessages } from "next-intl";
-import { Inria_Sans } from "next/font/google";
-import { Navigation } from "@/components/Navigation";
-
-const inria = Inria_Sans({ subsets: ["latin"], weight: "400" });
+import { Root } from "@/components/Root";
 
 type Props = React.PropsWithChildren<{
   params: { locale: string };
@@ -27,10 +24,10 @@ const RootLayout = ({ params: { locale }, children }: Readonly<Props>) => {
 
   const messages = useMessages();
   return (
-    <html className={inria.className} lang={locale}>
+    <html>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Navigation>{children}</Navigation>
+          <Root>{children}</Root>
         </NextIntlClientProvider>
       </body>
     </html>
