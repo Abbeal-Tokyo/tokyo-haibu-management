@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider, useMessages } from "next-intl";
-import { Root } from "@/components/Root";
+import { Root } from "./components/Root";
 
 type Props = React.PropsWithChildren<{
   params: { locale: string };

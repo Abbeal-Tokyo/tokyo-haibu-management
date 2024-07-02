@@ -4,10 +4,10 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
 import { Views } from "react-big-calendar";
 import dayjs from "dayjs";
-
-import type { View } from "react-big-calendar";
-import type { BCalendarViews } from "./BCalendarViews";
 import type { ManipulateType as DayJSManipulateType } from "dayjs";
+import type { View } from "react-big-calendar";
+
+import type { BCalendarViews } from "./BCalendarViews";
 
 type CalendarProps = Readonly<{
   date: Date;

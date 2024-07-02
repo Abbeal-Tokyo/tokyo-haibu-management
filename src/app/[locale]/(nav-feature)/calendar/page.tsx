@@ -10,12 +10,12 @@ import {
 import type { CalendarProps, Event, View } from "react-big-calendar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons/faCalendarDays";
-import { CalendarToolbar } from "@/components/CalendarToolbar";
-import type { BCalendarViews } from "@/components/BCalendarViews";
-import { BCalendarMonthHeader } from "@/components/BCalendarMonthHeader";
-import { BCalendarMonthDateHeader } from "@/components/BCalendarMonthDateHeader";
-import { BCalendarMonthEvent } from "@/components/BCalendarMonthEvent";
-import { BCalendarEventContainerWrapper } from "@/components/BCalendarEventContainerWrapper";
+import { CalendarToolbar } from "./components/CalendarToolbar";
+import type { BCalendarViews } from "./components/BCalendarViews";
+import { BCalendarMonthHeader } from "./components//BCalendarMonthHeader";
+import { BCalendarMonthDateHeader } from "./components/BCalendarMonthDateHeader";
+import { BCalendarMonthEvent } from "./components//BCalendarMonthEvent";
+import { BCalendarEventContainerWrapper } from "./components/BCalendarEventContainerWrapper";
 
 type BCalendarEventPropGetter = NonNullable<CalendarProps["eventPropGetter"]>;
 // import jaLocal from "dayjs/locale/ja";
