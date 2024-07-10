@@ -4,6 +4,8 @@ services:
     build:
       context: .
       target: development
+    env_file:
+      - ".env.local"
     environment:
       POSTGRES_PRISMA_URL: postgresql://haibu:haibu@host.docker.internal:5433/haibu
       POSTGRES_URL_NON_POOLING: postgresql://haibu:haibu@host.docker.internal:5433/haibu
