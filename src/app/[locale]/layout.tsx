@@ -2,7 +2,7 @@ import "@/app/globals.css";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { Root } from "./components/Root";
-import AuthenticationProvider from "@/providers/Authentication";
+import AuthenticationProvider from "@/providers/AuthenticationProvider";
 
 type Props = React.PropsWithChildren<{
   params: { locale: string };
