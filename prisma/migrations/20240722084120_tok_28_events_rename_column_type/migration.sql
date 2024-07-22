@@ -9,8 +9,11 @@
   - Made the column `type_name` on table `event_type` required. This step will fail if there are existing NULL values in that column.
 
 */
+-- Prepare Data
+DELETE FROM "event";
+
 -- AlterTable
-ALTER TABLE "event" ADD COLUMN     "type" VARCHAR NOT NULL,
+ALTER TABLE "event" ADD COLUMN "type" VARCHAR NOT NULL,
 ALTER COLUMN "start_date" SET NOT NULL,
 ALTER COLUMN "end_date" SET NOT NULL;
 
