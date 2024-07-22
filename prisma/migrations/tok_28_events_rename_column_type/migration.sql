@@ -11,6 +11,7 @@
 */
 -- Prepare Data
 DELETE FROM "event";
+DELETE FROM "event_type";
 
 -- AlterTable
 ALTER TABLE "event" ADD COLUMN "type" VARCHAR NOT NULL,
