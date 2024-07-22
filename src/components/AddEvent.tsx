@@ -20,7 +20,7 @@ export const AddEvent = () => {
       <p>Add Event</p>
       <form
         action={async (formData) => {
-          await createEvent(formData);
+          // await createEvent(formData);
           ref.current?.reset();
         }}
         ref={ref}
