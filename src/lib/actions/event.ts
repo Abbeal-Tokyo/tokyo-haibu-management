@@ -1,11 +1,30 @@
 "use server";
 
-import type { Event, EventForm } from "@/app/model/event";
+import type { Event, EventForm } from "@/model/event";
+import { type Prisma } from "@prisma/client";
 import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
 export const getEvents = async (): Promise<Event[]> => {
-  return await prisma.event.findMany();
+  return await prisma.event
+    .findMany({
+      include: {
+        location: { include: { tags: true } },
+      },
+    })
+    .then((events) => {
+      return events.map((event) => {
+        return {
+          ...event,
+          location: event.location
+            ? {
+                ...event.location,
+                tags: event.location.tags.map((tag) => tag.tag_name),
+              }
+            : undefined,
+        };
+      });
+    });
 };
 
 export const getEventTypes = async (): Promise<string[]> => {
@@ -16,7 +35,7 @@ export const getEventTypes = async (): Promise<string[]> => {
 
 export const createEvent = async (data: EventForm) => {
   validateEventForm(data);
-  const event = {
+  const event: Prisma.eventCreateInput = {
     title: data.title,
     start_date: data.startDate,
     end_date: data.endDate,
@@ -28,6 +47,11 @@ export const createEvent = async (data: EventForm) => {
     },
     color: data.color,
   };
+  if (data.location) {
+    event.location = {
+      connect: { location_id: data.location },
+    };
+  }
   await prisma.event.create({ data: event });
   revalidatePath("/events");
 };
@@ -39,6 +63,8 @@ export const deleteEvent = async (eventId: bigint): Promise<void> => {
 const validateEventForm = (data: EventForm) => {
   const errorMessages: string[] = [];
   if (!data.eventType) errorMessages.push("event type is not defined");
+  if (!data.startDate || !data.endDate)
+    errorMessages.push("date is not defined");
   if (data.endDate < data.startDate)
     errorMessages.push("end date should be before start date");
   if (errorMessages.length > 0)
