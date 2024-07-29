@@ -2,6 +2,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Prisma require VisualStudioTools C++ and Python
+
+- https://visualstudio.microsoft.com/fr/downloads/
+- https://www.python.org/downloads/
+
 First, install the required packages :
 
 ```bash
@@ -33,7 +38,7 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-APIs documentation is available on  [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+APIs documentation is available on [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
 
 ## Naming convention
 

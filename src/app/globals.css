@@ -1,3 +1,4 @@
+@import "react-big-calendar/lib/css/react-big-calendar";
 
 @tailwind base;
 @tailwind components;
@@ -5,35 +6,40 @@
 
 @layer base {
   :root {
-    --primary: #144F4F;
+    --primary: #144f4f;
     --secondary: #42b296;
-    --tertiary: #b5d6b5; 
+    --tertiary: #b5d6b5;
+    --gray: #eaeaea;
+    --event1: #d6b5b5cc;
+    --event2: #b5ced6cc;
     --background: #f4f5f7;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary: #144F4F;
+    --primary: #144f4f;
     --secondary: #42b296;
     --tertiary: #b5d6b5;
+    --gray: #eaeaea;
+    --event1: #d6b5b5cc;
+    --event2: #b5ced6cc;
     --background: #f4f5f7;
   }
 }
 
 @layer base {
-  /* html {
-    font-family: "Inria Sans";
-  } */
-  body, html {
+  body,
+  html {
     /* Reset body to take all viewport size */
     margin: 0;
     padding: 0;
-    height: 100%;  
+    height: 100%;
+    /* Default app Color */
     color: var(--primary);
     background-color: var(--background);
   }
-  /* TO DO : FONT SIZE BASED ON SCREEN SIZE*/ 
+  /* TO DO : FONT SIZE BASED ON SCREEN SIZE*/
   h1 {
     font-weight: 600;
     font-size: 1.7em;
@@ -42,10 +48,6 @@
     font-weight: 600;
     font-size: 1.3em;
   }
-  body {
-    /* Default app Color */ 
-    color: var(--primary);
-  }
 }
 
 @layer utilities {
@@ -53,8 +55,61 @@
     text-wrap: balance;
   }
   .scale-up-center {
-    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-            animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
+      both;
+    animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  }
+}
+
+/* OVERRIDE React BigCalendar */
+
+/* Global */
+.rbc-calendar {
+  height: 95% !important;
+}
+.rbc-month-view {
+  /** remove global border inside the calendar, to remove completly trace of border in calendar header (eg Thuesday, Wednesday...)*/
+  border: none;
+}
+.rbc-month-view .rbc-header + .rbc-header {
+  /** remove border inside the calendar header for day (eg Thuesday, Wednesday...) */
+  border-left: none;
+}
+.rbc-month-row {
+  /** compensante removing the global border by putting this */
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+}
+
+.rbc-date-cell + .rbc-date-cell {
+  border-left: 1px solid #ddd;
+}
+
+.rbc-month-view .rbc-date-cell {
+  /* BCalendarMonthDateHeader background color */
+  background-color: var(--background);
+}
+
+/** CUSTOM Class */
+@layer components {
+  .calendar-views-radio + label {
+    display: inline-block;
+  }
+  div > .calendar-views-radio + label {
+    position: relative;
+  }
+  .calendar-views-radio:focus-visible + label {
+    /* Apply styles to the label when the associated radio input is focused */
+    border: 2px black solid;
+  }
+  .calendar-views-radio:checked + label {
+    /* Apply styles to the label when the associated radio input is checked */
+    @apply rounded-2xl;
+    color: white;
+    background-color: var(--tertiary);
+    opacity: 100;
+    animation: scale-2x 0.1s linear forwards;
+    z-index: 1;
   }
 }
 /**
@@ -62,26 +117,34 @@
  * animation scale-up-center
  * ----------------------------------------
  */
- @-webkit-keyframes scale-up-center {
+@-webkit-keyframes scale-up-center {
   0% {
     -webkit-transform: scale(0.98);
-            transform: scale(0.98);
+    transform: scale(0.98);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 @keyframes scale-up-center {
   0% {
     -webkit-transform: scale(0.98);
-            transform: scale(0.98);
+    transform: scale(0.98);
   }
   100% {
     -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
-
-
+@keyframes scale-2x {
+  from {
+    /* Define the initial state of the element */
+    transform: scale(1);
+  }
+  to {
+    /* Define the final state of the element */
+    transform: scale(1.2);
+  }
+}
