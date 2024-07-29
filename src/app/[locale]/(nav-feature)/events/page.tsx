@@ -1,4 +1,4 @@
-import { AddEvent } from "@/components/AddEvent";
+import { EventForm } from "@/components/EventForm";
 import { EventsList } from "@/components/EventsList";
 import { useTranslations } from "next-intl";
 
@@ -7,7 +7,7 @@ const Event = () => {
   return (
     <div className="flex flex-col gap-4">
       <h1>{t("title")}</h1>
-      <AddEvent />
+      <EventForm />
       <EventsList />
     </div>
   );
