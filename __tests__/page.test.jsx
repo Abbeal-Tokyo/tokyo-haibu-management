@@ -2,11 +2,15 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import Home from "@/app/[locale]/page";
 
-describe("Home Page", () => {
-  it("renders a logo", () => {
-    render(<Home />);
+jest.mock("@/lib/authentication/session", () => ({
+  getSession: jest.fn().mockResolvedValue({}),
+}));
 
-    const H2 = screen.getByText("MAIN PAGE");
+describe("Home Page", () => {
+  it("should display welcome", async () => {
+    render(await Home());
+
+    const H2 = screen.getByText("WELCOME");
 
     expect(H2).toBeInTheDocument();
   });

@@ -2,6 +2,7 @@ import "@/app/globals.css";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { Root } from "./components/Root";
+import AuthenticationProvider from "@/providers/AuthenticationProvider";
 
 type Props = React.PropsWithChildren<{
   params: { locale: string };
@@ -27,7 +28,9 @@ const RootLayout = ({ params: { locale }, children }: Readonly<Props>) => {
     <html>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Root>{children}</Root>
+          <AuthenticationProvider>
+            <Root>{children}</Root>
+          </AuthenticationProvider>
         </NextIntlClientProvider>
       </body>
     </html>
