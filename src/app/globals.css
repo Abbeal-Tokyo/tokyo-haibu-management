@@ -1,5 +1,6 @@
 @import "react-big-calendar/lib/css/react-big-calendar";
 
+/* TO DO: MIGRATE FROM TAILWIND TO CSS PER COMPONENT*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -89,7 +90,9 @@
   /* BCalendarMonthDateHeader background color */
   background-color: var(--background);
 }
-
+.selected {
+  border-bottom: 1px solid gray;
+}
 /** CUSTOM Class */
 @layer components {
   .calendar-views-radio + label {
