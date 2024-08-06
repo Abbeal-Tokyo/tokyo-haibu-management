@@ -4,17 +4,20 @@
     "description": "Manage Tokyo hive !"
   },
   "navigation": {
-    "title": "Hive Manager",
+    "title": "HIVE MANAGER",
     "calendar": "CALENDAR",
     "events": "EVENTS",
     "office": "OFFICE",
-    "logout": "Log Out"
+    "logout": "LOG OUT"
   },
   "calendar": {
-    "title": "Calendar"
+    "title": "CALENDAR"
   },
   "events": {
-    "title": "I'M EVENTS PAGE"
+    "title": "EVENTS",
+    "tabPlannedTitle": "EVENT PLANNED",
+    "tabPlacesTitle": "PLACES",
+    "tabPlannedSubtitle": "INCOMING EVENTS"
   },
   "officeKeys": {
     "title": "I'M OFFICE KEYS PAGE"
