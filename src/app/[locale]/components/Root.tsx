@@ -2,11 +2,14 @@ import { useTranslations } from "next-intl";
 import { Nav } from "./Nav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons/faRightFromBracket";
+import clsx from "clsx";
+import { Inria_Sans } from "next/font/google";
+const inria = Inria_Sans({ subsets: ["latin"], weight: "400" });
 
-export const Navigation = ({ children }: React.PropsWithChildren) => {
+export const Root = ({ children }: React.PropsWithChildren) => {
   const t = useTranslations("navigation");
   return (
-    <main className="flex h-full bg-background">
+    <main className={clsx("flex h-full bg-background", inria.className)}>
       <section className="flex flex-col basis-2/12">
         <header className="flex justify-center items-center basis-2/12">
           <h2 className="text-center">{t("title")}</h2>
@@ -31,7 +34,9 @@ export const Navigation = ({ children }: React.PropsWithChildren) => {
           </button>
         </footer>
       </section>
-      <section className="basis-10/12 bg-white p-14">{children}</section>
+      <section className="basis-10/12 overflow-scroll	bg-white p-[5%]">
+        {children}
+      </section>
     </main>
   );
 };
