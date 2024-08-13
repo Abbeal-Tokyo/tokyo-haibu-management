@@ -11,17 +11,19 @@ datasource db {
 model event {
   event_id            BigInt       @id @default(autoincrement())
   title               String?      @db.VarChar
-  start_date          DateTime?    @db.Timestamp(6)
-  end_date            DateTime?    @db.Timestamp(6)
-  invitation_due_time DateTime?    @db.Timestamp(6)
+  start_date          DateTime     @db.Timestamp(6)
+  end_date            DateTime     @db.Timestamp(6)
   location            String?      @db.VarChar
   color               String?      @db.VarChar
+  invitation_due_time DateTime?    @db.Timestamp(6)
   invitation          invitation[]
+  type                String       @db.VarChar 
+  event_type          event_type   @relation(fields: [type], references: [type_name], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model event_type {
-  event_type_id BigInt  @id @default(autoincrement())
-  type_name     String? @db.VarChar
+  type_name     String @id @db.VarChar
+  events        event[]
 }
 
 model invitation {
