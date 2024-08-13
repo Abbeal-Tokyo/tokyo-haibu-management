@@ -2,7 +2,6 @@
 
 import type { EventForm } from "@/model/event";
 import type { Location } from "@/model/location";
-import { AddLocation } from "./AddLocation";
 import { createEvent } from "@/lib/actions/event";
 import { useRef } from "react";
 import { useFormStatus } from "react-dom";
@@ -29,16 +28,18 @@ const validateForm = (formData: FormData) => {
   createEvent(eventForm);
 };
 
-interface IProps {
+type AddEventProps = Readonly<{
   eventTypes: string[];
   locations: Location[];
-}
+}>;
 
-export const AddEvent = (props: IProps) => {
+export const AddEvent = ({ eventTypes, locations }: AddEventProps) => {
   const ref = useRef<HTMLFormElement>(null);
+  eventTypes;
+  locations;
 
-  const getLocationCheckBoxes = () => {
-    const locations = props.locations.map((location) => {
+  const getLocationOptions = () => {
+    const locationOptions = locations.map((location) => {
       const id = location.location_id;
       return (
         <option key={id} value={Number(id)}>
@@ -49,8 +50,8 @@ export const AddEvent = (props: IProps) => {
         </option>
       );
     });
-    locations.push(<option key={"undefined"} value={undefined} />);
-    return locations;
+    locationOptions.push(<option key={"undefined"} value={undefined} />);
+    return locationOptions;
   };
 
   return (
@@ -78,8 +79,7 @@ export const AddEvent = (props: IProps) => {
             />
           </div>
           <div>
-            Available event types:{" "}
-            {props.eventTypes ? props.eventTypes.join(", ") : ""}
+            Available event types: {eventTypes ? eventTypes.join(", ") : ""}
           </div>
           <div>
             Start date:
@@ -97,13 +97,12 @@ export const AddEvent = (props: IProps) => {
           <div>
             Location:
             <select className="text-black" name="location">
-              {getLocationCheckBoxes()}
+              {getLocationOptions()}
             </select>
           </div>
           <AddButton />
         </div>
       </form>
-      <AddLocation />
     </div>
   );
 };
