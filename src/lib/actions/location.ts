@@ -50,8 +50,8 @@ export const deleteLocation = async (locationId: bigint): Promise<void> => {
 
 const validateLocationForm = (data: LocationForm) => {
   const errorMessages: string[] = [];
-  if (!data.name) errorMessages.push("Venue name is missing");
-  if (!data.address) errorMessages.push("Venue address is missing");
+  if (!data.name) errorMessages.push("Location name is missing");
+  if (!data.address) errorMessages.push("Location address is missing");
   if (errorMessages.length > 0)
     throw new Error("Validation error: " + errorMessages.join("; "));
 };
