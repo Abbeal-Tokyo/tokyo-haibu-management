@@ -1,12 +1,13 @@
 "use client";
 import { useTranslations } from "next-intl";
+import { useCallback } from "react";
 import dayjs from "dayjs";
-import type { CalendarProps, Event } from "react-big-calendar";
 import {
   Calendar as BCalendar,
   Views,
   dayjsLocalizer,
 } from "react-big-calendar";
+import type { CalendarProps, Event } from "react-big-calendar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons/faCalendarDays";
 import { CalendarToolbar } from "./components/CalendarToolbar";
@@ -16,14 +17,10 @@ import { BCalendarMonthDateHeader } from "./components/BCalendarMonthDateHeader"
 import { BCalendarMonthEvent } from "./components//BCalendarMonthEvent";
 import { BCalendarEventContainerWrapper } from "./components/BCalendarEventContainerWrapper";
 import useCalendar from "./useCalendar";
-import { useCallback } from "react";
 
 type BCalendarEventPropGetter = NonNullable<CalendarProps["eventPropGetter"]>;
 type ViewArray = BCalendarViews[];
-// import jaLocal from "dayjs/locale/ja";
-// import frLocal from "dayjs/locale/fr";
 
-// dayjs.locale(frLocal);
 const localizer = dayjsLocalizer(dayjs);
 
 const Calendar = () => {

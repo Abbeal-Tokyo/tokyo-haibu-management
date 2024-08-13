@@ -12,7 +12,6 @@ const useCalendar = () => {
       .then((events) =>
         events.map((event) => {
           return {
-            allDay: event.end_date == null,
             title: event.title,
             start: event.start_date ?? undefined,
             end: event.end_date ?? undefined,
