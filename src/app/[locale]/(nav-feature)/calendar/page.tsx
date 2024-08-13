@@ -1,13 +1,13 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback } from "react";
 import dayjs from "dayjs";
 import {
   Calendar as BCalendar,
   Views,
   dayjsLocalizer,
 } from "react-big-calendar";
-import type { CalendarProps, Event, View } from "react-big-calendar";
+import type { CalendarProps, Event } from "react-big-calendar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons/faCalendarDays";
 import { CalendarToolbar } from "./components/CalendarToolbar";
@@ -16,48 +16,20 @@ import { BCalendarMonthHeader } from "./components//BCalendarMonthHeader";
 import { BCalendarMonthDateHeader } from "./components/BCalendarMonthDateHeader";
 import { BCalendarMonthEvent } from "./components//BCalendarMonthEvent";
 import { BCalendarEventContainerWrapper } from "./components/BCalendarEventContainerWrapper";
+import useCalendar from "./useCalendar";
 
 type BCalendarEventPropGetter = NonNullable<CalendarProps["eventPropGetter"]>;
-// import jaLocal from "dayjs/locale/ja";
-// import frLocal from "dayjs/locale/fr";
+type ViewArray = BCalendarViews[];
 
-// dayjs.locale(frLocal);
 const localizer = dayjsLocalizer(dayjs);
 
-// TO DO : DECOMPOSE BCALENDAR BEHAVIOR TO COMPONENT
 const Calendar = () => {
   const t = useTranslations("calendar");
-  type ViewArray = BCalendarViews[];
-  const { views }: { views: ViewArray } = useMemo(
-    () => ({
-      views: [Views.MONTH, Views.WEEK, Views.DAY],
-    }),
-    [],
-  );
-  const [date, setDate] = useState(new Date());
-  const [view, setView] = useState<View>(Views.MONTH);
-  // TO DO: ADD REAL LIST FROM BACK END
-  const [eventList] = useState<Event[]>([
-    {
-      title: "Default event",
-      start: new Date("06/01/2024"),
-      end: new Date("06/01/2024"),
-    },
-    {
-      title: "Lunch",
-      start: new Date(2024, 5, 6, 12, 30, 0),
-      end: new Date(2024, 5, 6, 13, 30, 0),
-    },
-    {
-      title: "Nomikai",
-      start: new Date(2024, 5, 6, 18, 30, 0),
-      end: new Date(2024, 5, 6, 19, 30, 0),
-    },
-    { title: "Event 4", start: new Date(), end: new Date() },
-  ]);
-
+  const { views }: { views: ViewArray } = {
+    views: [Views.MONTH, Views.WEEK, Views.DAY],
+  };
   const eventPropGetter = useCallback<BCalendarEventPropGetter>(
-    (event) => ({
+    (event: Event) => ({
       className: "bg-event1",
       ...(event.title?.toString().includes("Nomikai") && {
         className: "bg-event2",
@@ -65,18 +37,8 @@ const Calendar = () => {
     }),
     [],
   );
-  const onNavigate = useCallback(
-    (newDate: Date) => {
-      setDate(newDate);
-    },
-    [setDate],
-  );
-  const onViewChange = useCallback(
-    (newView: View) => {
-      setView(newView);
-    },
-    [setView],
-  );
+
+  const { date, view, eventList, onNavigate, onViewChange } = useCalendar();
 
   return (
     <>
