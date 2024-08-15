@@ -8,6 +8,7 @@ import type { ManipulateType as DayJSManipulateType } from "dayjs";
 import type { View } from "react-big-calendar";
 
 import type { BCalendarViews } from "./BCalendarViews";
+import { getFirstDayOfWeek, getLastDayOfWeek } from "@/lib/utils/date";
 
 type CalendarProps = Readonly<{
   date: Date;
@@ -22,8 +23,18 @@ export const CalendarToolbar = ({
   onNavigate,
   onViewChange,
 }: CalendarProps) => {
-  const title = useMemo(() => dayjs(date).format("YYYY"), [date]);
-  const subtitle = useMemo(() => dayjs(date).format("MMMM"), [date]);
+  const title = useMemo(() => dayjs(date).format("MMMM YYYY"), [date]);
+  const subtitle = useMemo(() => {
+    if (view == Views.WEEK) {
+      return (
+        dayjs(getFirstDayOfWeek(date)).format("ddd DD") +
+        " - " +
+        dayjs(getLastDayOfWeek(date)).format("ddd DD")
+      );
+    } else if (view == Views.DAY) {
+      return dayjs(date).format("dddd DD");
+    }
+  }, [date, view]);
   const dateType = new Map<BCalendarViews, DayJSManipulateType>([
     ["week", "week"],
     ["month", "month"],
@@ -50,13 +61,11 @@ export const CalendarToolbar = ({
   };
   return (
     <section className="grid grid-cols-3 mb-5">
-      <header className="col-start-2 flex flex-col items-center gap-y-4">
-        <h2 className="text-center">
-          {title}
-          <br></br>
-          {subtitle}
+      <header className="col-start-2 flex flex-col items-center">
+        <h2 className="text-center h-16">
+          {title} <br /> {subtitle}
         </h2>
-        <section className="flex gap-x-2">
+        <section>
           <button
             className="rounded-xl px-3 py-2 text-center text-primary bg-background hover:scale-up-center"
             onClick={() => onNavigateButtonClick("back")}
