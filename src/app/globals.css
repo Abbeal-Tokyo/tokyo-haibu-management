@@ -67,6 +67,10 @@
 .rbc-calendar {
   height: 95% !important;
 }
+.rbc-current-time-indicator {
+  background-color: var(--primary);
+}
+
 .rbc-month-view {
   /** remove global border inside the calendar, to remove completly trace of border in calendar header (eg Thuesday, Wednesday...)*/
   border: none;
@@ -74,6 +78,10 @@
 .rbc-month-view .rbc-header + .rbc-header {
   /** remove border inside the calendar header for day (eg Thuesday, Wednesday...) */
   border-left: none;
+}
+.rbc-month-view .rbc-date-cell {
+  /* BCalendarMonthDateHeader background color */
+  background-color: var(--background);
 }
 .rbc-month-row {
   /** compensante removing the global border by putting this */
@@ -83,11 +91,6 @@
 
 .rbc-date-cell + .rbc-date-cell {
   border-left: 1px solid #ddd;
-}
-
-.rbc-month-view .rbc-date-cell {
-  /* BCalendarMonthDateHeader background color */
-  background-color: var(--background);
 }
 
 /** CUSTOM Class */
