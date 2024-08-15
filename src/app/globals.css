@@ -56,13 +56,32 @@
   }
   .scale-up-center {
     -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
-      both;
+    both;
     animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   }
 }
 
-/* OVERRIDE React BigCalendar */
+.select-button {
+  background-color: var(--tertiary);
+  color: rgb(from var(--primary) r g b / 0.7);
+  border-radius: 0.5rem;
+  text-align: center;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.select-button:hover {
+  transform: scale(0.95);
+  cursor: pointer;
+}
+.select-button.active {
+  background-color: var(--secondary);
+    color: var(--gray);
+}
 
+/**
+ * ----------------------------------------
+ * Big Calendar
+ * ----------------------------------------
+ */
 /* Global */
 .rbc-calendar {
   height: 95% !important;
@@ -100,16 +119,12 @@
   }
   div > .calendar-views-radio + label {
     position: relative;
-  }
-  .calendar-views-radio:focus-visible + label {
-    /* Apply styles to the label when the associated radio input is focused */
-    border: 2px black solid;
+    background-color: rgb(from var(--gray) r g b / 0.4);
   }
   .calendar-views-radio:checked + label {
     /* Apply styles to the label when the associated radio input is checked */
-    @apply rounded-2xl;
-    color: white;
-    background-color: var(--tertiary);
+    background-color: var(--secondary);
+    color: var(--gray);
     opacity: 100;
     animation: scale-2x 0.1s linear forwards;
     z-index: 1;

@@ -64,7 +64,7 @@ const Calendar = () => {
         events={eventList}
         startAccessor="start"
         endAccessor="end"
-        scrollToTime={new Date(0, 0, 0, 12)}
+        scrollToTime={new Date(0, 0, 0, 8)}
         style={{ height: 500 }}
         view={view}
         views={views}

@@ -42,8 +42,8 @@ export const CalendarToolbar = ({
   ]);
   const viewButtons = [
     { id: 1, label: "Month", value: Views.MONTH },
-    { id: 2, label: "Day", value: Views.DAY },
-    { id: 3, label: "Week", value: Views.WEEK },
+    { id: 2, label: "Week", value: Views.WEEK },
+    { id: 3, label: "Day", value: Views.DAY },
   ];
   const viewRadioGroupName = "views";
   const onViewButtonFocused = (selectedView: BCalendarViews) =>
@@ -92,10 +92,7 @@ export const CalendarToolbar = ({
               defaultChecked={view == value}
               onFocus={() => onViewButtonFocused(value)}
             ></input>
-            <label
-              className="px-3 py-2 text-center bg-background opacity-40"
-              htmlFor={value}
-            >
+            <label className="select-button !px-3 py-2" htmlFor={value}>
               {label}
             </label>
           </div>

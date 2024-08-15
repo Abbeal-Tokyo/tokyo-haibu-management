@@ -18,11 +18,9 @@ export const NavButton = ({
 }: NavButtonProps) => (
   <Link
     href={href}
-    className={clsx(
-      "rounded-tl-lg rounded-bl-lg px-4 py-2 text-center text-white bg-secondary hover:scale-up-center",
-      { "bg-tertiary": active },
-      className,
-    )}
+    className={clsx(`select-button !rounded-r-none ${className}`, {
+      active: active,
+    })}
   >
     {children}
   </Link>
