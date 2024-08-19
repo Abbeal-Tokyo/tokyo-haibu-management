@@ -74,7 +74,7 @@
 }
 .select-button.active {
   background-color: var(--secondary);
-    color: var(--gray);
+  color: var(--gray);
 }
 
 /**
@@ -125,7 +125,6 @@
     /* Apply styles to the label when the associated radio input is checked */
     background-color: var(--secondary);
     color: var(--gray);
-    opacity: 100;
     animation: scale-2x 0.1s linear forwards;
     z-index: 1;
   }
