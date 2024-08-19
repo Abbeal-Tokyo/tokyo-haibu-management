@@ -20,7 +20,7 @@ const Button = ({
     <button
       onClick={onClick}
       className={clsx(
-        "bg-tertiary text-primaryOpacity70 text-center px-4 py-2 rounded-lg enabled:hover:scale-up-center " +
+        "bg-tertiary text-center px-4 py-2 rounded-lg enabled:hover:scale-up-center " +
           className,
         { "!bg-secondary !text-gray": isSelected },
         { "!text-gray bg-opacity-50": isDisabled },

@@ -1,4 +1,5 @@
 "use client";
+import clsx from "clsx";
 import { useRef, useState } from "react";
 import type { ReactNode } from "react";
 
@@ -57,7 +58,10 @@ const Tabs = ({ tabs }: TabsProps) => {
             ref={(el) => {
               tabRefs.current[index] = el;
             }}
-            className="tablinks active rounded-t-lg px-4 py-3 mr-0.5 text-center bg-tertiary"
+            className={clsx(
+              "tablinks active rounded-t-lg px-4 py-3 mr-0.5 text-center bg-tertiary",
+              { "border-b-2 border-tertiary": tab.id === selectedId },
+            )}
             role="tab"
             aria-selected={tab.id === selectedId ? true : false}
             tabIndex={tab.id === selectedId ? 0 : -1}

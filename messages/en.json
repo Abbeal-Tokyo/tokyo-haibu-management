@@ -15,9 +15,12 @@
   },
   "events": {
     "title": "EVENTS",
-    "tabPlannedTitle": "EVENT PLANNED",
-    "tabPlacesTitle": "PLACES",
-    "tabPlannedSubtitle": "INCOMING EVENTS"
+    "eventTab": {
+      "title": "EVENTS",
+      "incomingEvents": "INCOMING EVENTS",
+      "createEvent": "CREATE EVENT"
+    },
+    "tabPlacesTitle": "PLACES"
   },
   "officeKeys": {
     "title": "I'M OFFICE KEYS PAGE"
