@@ -4,11 +4,10 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
 import { Views } from "react-big-calendar";
 import dayjs from "dayjs";
+
 import type { ManipulateType as DayJSManipulateType } from "dayjs";
 import type { View } from "react-big-calendar";
-
 import type { BCalendarViews } from "./BCalendarViews";
-import { getFirstDayOfWeek, getLastDayOfWeek } from "@/lib/utils/date";
 
 type CalendarProps = Readonly<{
   date: Date;
@@ -26,11 +25,13 @@ export const CalendarToolbar = ({
   const title = useMemo(() => dayjs(date).format("MMMM YYYY"), [date]);
   const subtitle = useMemo(() => {
     if (view == Views.WEEK) {
-      return (
-        dayjs(getFirstDayOfWeek(date)).format("ddd DD") +
-        " - " +
-        dayjs(getLastDayOfWeek(date)).format("ddd DD")
-      );
+      const firstDayOfWeek = dayjs(date)
+        .subtract(date.getDay(), "day")
+        .format("ddd DD");
+      const lastDayOfWeek = dayjs(date)
+        .add(6 - date.getDay(), "day")
+        .format("ddd DD");
+      return firstDayOfWeek + " - " + lastDayOfWeek;
     } else if (view == Views.DAY) {
       return dayjs(date).format("dddd DD");
     }
