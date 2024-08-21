@@ -61,28 +61,11 @@
   }
 }
 
-.select-button {
-  background-color: var(--tertiary);
-  color: rgb(from var(--primary) r g b / 0.7);
-  border-radius: 0.5rem;
-  text-align: center;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-}
-.select-button:hover {
-  transform: scale(0.95);
-  cursor: pointer;
-}
-.select-button.active {
-  background-color: var(--secondary);
-  color: var(--gray);
-}
-
 /**
  * ----------------------------------------
  * Big Calendar
  * ----------------------------------------
  */
-/* Global */
 .rbc-calendar {
   height: 95% !important;
 }
@@ -113,23 +96,7 @@
   border-left: 1px solid #ddd;
 }
 
-/** CUSTOM Class */
-@layer components {
-  .calendar-views-radio + label {
-    display: inline-block;
-  }
-  div > .calendar-views-radio + label {
-    position: relative;
-    background-color: rgb(from var(--gray) r g b / 0.4);
-  }
-  .calendar-views-radio:checked + label {
-    /* Apply styles to the label when the associated radio input is checked */
-    background-color: var(--secondary);
-    color: var(--gray);
-    animation: scale-2x 0.1s linear forwards;
-    z-index: 1;
-  }
-}
+
 /**
  * ----------------------------------------
  * animation scale-up-center

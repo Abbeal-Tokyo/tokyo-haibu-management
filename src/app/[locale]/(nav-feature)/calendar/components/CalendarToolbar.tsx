@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons/faChevronLeft";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
 import { Views } from "react-big-calendar";
+import { clsx } from "clsx";
 import dayjs from "dayjs";
+import Button from "@/components/Button";
 
 import type { ManipulateType as DayJSManipulateType } from "dayjs";
 import type { View } from "react-big-calendar";
@@ -46,7 +48,6 @@ export const CalendarToolbar = ({
     { id: 2, label: "Week", value: Views.WEEK },
     { id: 3, label: "Day", value: Views.DAY },
   ];
-  const viewRadioGroupName = "views";
   const onViewButtonFocused = (selectedView: BCalendarViews) =>
     onViewChange(selectedView);
   const onNavigateButtonClick = (action: "back" | "forward") => {
@@ -83,20 +84,17 @@ export const CalendarToolbar = ({
       </header>
       <div className="flex items-end justify-end">
         {viewButtons.map(({ id, label, value }) => (
-          <div key={id}>
-            <input
-              className="calendar-views-radio appearance-none"
-              type="radio"
-              id={value}
-              name={viewRadioGroupName}
-              value={value}
-              defaultChecked={view == value}
-              onFocus={() => onViewButtonFocused(value)}
-            ></input>
-            <label className="select-button !px-3 py-2" htmlFor={value}>
-              {label}
-            </label>
-          </div>
+          <Button
+            key={id}
+            onClick={() => onViewButtonFocused(value)}
+            className={clsx(
+              "!scale-100 !px-3",
+              { "!bg-backgroundOpacity40": view != value },
+              { "!scale-110 z-10": view === value },
+            )}
+          >
+            {label}
+          </Button>
         ))}
       </div>
     </section>

@@ -16,6 +16,7 @@ const config: Config = {
         gray: "var(--gray)",
         event1: "var(--event1)",
         event2: "var(--event2)",
+        primaryOpacity70: "rgb(from var(--primary) r g b / 0.7)",
       },
       backgroundColor: {
         background: "var(--background)",
@@ -25,6 +26,7 @@ const config: Config = {
         gray: "var(--gray)",
         event1: "var(--event1)",
         event2: "var(--event2)",
+        backgroundOpacity40: "rgb(from var(--background) r g b / 0.4)",
       },
     },
   },
