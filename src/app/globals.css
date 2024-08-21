@@ -93,6 +93,7 @@
 .rbc-month-view {
   /** remove global border inside the calendar, to remove completly trace of border in calendar header (eg Thuesday, Wednesday...)*/
   border: none;
+  border-bottom: 1px solid #dddd;
 }
 .rbc-month-view .rbc-header + .rbc-header {
   /** remove border inside the calendar header for day (eg Thuesday, Wednesday...) */
