@@ -34,7 +34,7 @@ export const Root = ({ children }: React.PropsWithChildren) => {
           </button>
         </footer>
       </section>
-      <section className="basis-10/12 overflow-scroll	bg-white p-[5%]">
+      <section className="basis-10/12 overflow-auto	bg-white p-[5%]">
         {children}
       </section>
     </main>

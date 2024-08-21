@@ -56,24 +56,35 @@
   }
   .scale-up-center {
     -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
-      both;
+    both;
     animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   }
 }
 
-/* OVERRIDE React BigCalendar */
-
-/* Global */
+/**
+ * ----------------------------------------
+ * Big Calendar
+ * ----------------------------------------
+ */
 .rbc-calendar {
   height: 95% !important;
 }
+.rbc-current-time-indicator {
+  background-color: var(--primary);
+}
+
 .rbc-month-view {
   /** remove global border inside the calendar, to remove completly trace of border in calendar header (eg Thuesday, Wednesday...)*/
   border: none;
+  border-bottom: 1px solid #dddd;
 }
 .rbc-month-view .rbc-header + .rbc-header {
   /** remove border inside the calendar header for day (eg Thuesday, Wednesday...) */
   border-left: none;
+}
+.rbc-month-view .rbc-date-cell {
+  /* BCalendarMonthDateHeader background color */
+  background-color: var(--background);
 }
 .rbc-month-row {
   /** compensante removing the global border by putting this */
@@ -85,33 +96,7 @@
   border-left: 1px solid #ddd;
 }
 
-.rbc-month-view .rbc-date-cell {
-  /* BCalendarMonthDateHeader background color */
-  background-color: var(--background);
-}
 
-/** CUSTOM Class */
-@layer components {
-  .calendar-views-radio + label {
-    display: inline-block;
-  }
-  div > .calendar-views-radio + label {
-    position: relative;
-  }
-  .calendar-views-radio:focus-visible + label {
-    /* Apply styles to the label when the associated radio input is focused */
-    border: 2px black solid;
-  }
-  .calendar-views-radio:checked + label {
-    /* Apply styles to the label when the associated radio input is checked */
-    @apply rounded-2xl;
-    color: white;
-    background-color: var(--tertiary);
-    opacity: 100;
-    animation: scale-2x 0.1s linear forwards;
-    z-index: 1;
-  }
-}
 /**
  * ----------------------------------------
  * animation scale-up-center

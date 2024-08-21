@@ -1,7 +1,7 @@
 "use client";
 
-import { NavButton } from "./NavButton";
-import { usePathname } from "next/navigation";
+import Button from "@/components/Button";
+import { usePathname, useRouter } from "next/navigation";
 
 type NavProps = Readonly<{
   navButtons: Array<{ id: number; href: string; content: React.JSX.Element }>;
@@ -10,12 +10,19 @@ type NavProps = Readonly<{
 
 export const Nav = ({ className, navButtons }: NavProps) => {
   const pathname = usePathname();
+  const router = useRouter();
+
   return (
     <nav className={className}>
       {navButtons.map(({ id, href, content }) => (
-        <NavButton active={pathname.includes(href)} key={id} href={href}>
+        <Button
+          key={id}
+          className="!rounded-r-none"
+          onClick={() => router.push(href)}
+          isSelected={pathname.includes(href)}
+        >
           {content}
-        </NavButton>
+        </Button>
       ))}
     </nav>
   );
