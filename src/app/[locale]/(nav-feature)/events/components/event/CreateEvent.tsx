@@ -1,12 +1,12 @@
 "use client";
 
-import Button from "@/components/Button";
 import Modal from "@/components/Modal";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import useEventForm from "./useEventForm";
 import Form from "@/components/Form";
 import FormEntry from "@/components/FormEntry";
+import Button from "@/components/Button";
 
 const CreateEvent = () => {
   const t = useTranslations("events.eventTab");
@@ -22,12 +22,9 @@ const CreateEvent = () => {
 
   return (
     <>
-      <button
-        className="self-end w-40 px-4 py-3 rounded-lg text-center bg-tertiary hover:scale-up-center"
-        onClick={() => setIsModalOpen(true)}
-      >
+      <Button className="self-end w-40 !py-3" onClick={() => setIsModalOpen(true)}>
         {t("createEvent")}
-      </button>
+      </Button>
       <Modal
         title={t("createEvent")}
         isOpen={isModalOpen}
