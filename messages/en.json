@@ -3,6 +3,10 @@
     "title": "Tokyo Haibu Management",
     "description": "Manage Tokyo hive !"
   },
+  "common": {
+    "cancel": "CANCEL",
+    "validate": "VALIDATE"
+  },
   "navigation": {
     "title": "HIVE MANAGER",
     "calendar": "CALENDAR",
@@ -18,7 +22,11 @@
     "eventTab": {
       "title": "EVENTS",
       "incomingEvents": "INCOMING EVENTS",
-      "createEvent": "CREATE EVENT"
+      "createEvent": "CREATE EVENT",
+      "eventTitle": "TITLE",
+      "eventType": "TYPE",
+      "startDate": "START DATE",
+      "endDate": "END DATE"
     },
     "tabPlacesTitle": "PLACES"
   },

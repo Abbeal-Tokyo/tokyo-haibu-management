@@ -4,6 +4,7 @@ import Item from "@/components/Item";
 import PaginatedList from "@/components/PaginatedList";
 import { getIncomingEvents } from "@/lib/actions/event";
 import { getTranslations } from "next-intl/server";
+import CreateEvent from "./CreateEvent";
 
 const TabEvents = async () => {
   const items = await getIncomingEvents().then((events) =>
@@ -23,6 +24,7 @@ const TabEvents = async () => {
   const t = await getTranslations("events");
   return (
     <section className="flex flex-col	gap-3 px-10 py-8">
+      <CreateEvent />
       <header>
         <h2 className="text-nowrap">{t("eventTab.incomingEvents")}</h2>
       </header>
