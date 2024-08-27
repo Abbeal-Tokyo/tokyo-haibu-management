@@ -22,7 +22,10 @@ const CreateEvent = () => {
 
   return (
     <>
-      <Button className="self-end w-40 !py-3" onClick={() => setIsModalOpen(true)}>
+      <Button
+        className="self-end w-40 !py-3"
+        onClick={() => setIsModalOpen(true)}
+      >
         {t("createEvent")}
       </Button>
       <Modal

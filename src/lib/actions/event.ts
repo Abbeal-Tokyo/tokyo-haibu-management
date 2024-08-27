@@ -6,7 +6,7 @@ import prisma from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
 export const getEvents = async (
-  getOptions: Omit<Prisma.eventFindManyArgs, "include">,
+  getOptions?: Omit<Prisma.eventFindManyArgs, "include">,
 ): Promise<Event[]> => {
   return await prisma.event
     .findMany({
