@@ -24,7 +24,6 @@ export const Root = ({ children }: React.PropsWithChildren) => {
           ]}
         ></Nav>
         <footer className="flex items-center content-center	flex-auto">
-          {/* TO DO: decide on ICON library */}
           <button className="m-auto">
             <FontAwesomeIcon
               className="inline w-6 h-6"

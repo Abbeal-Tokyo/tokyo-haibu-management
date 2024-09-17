@@ -1,5 +1,6 @@
 @import "react-big-calendar/lib/css/react-big-calendar";
 
+/* TO DO: MIGRATE FROM TAILWIND TO CSS PER COMPONENT*/
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

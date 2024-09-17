@@ -3,18 +3,32 @@
     "title": "Tokyo Haibu Management",
     "description": "Manage Tokyo hive !"
   },
+  "common": {
+    "cancel": "CANCEL",
+    "validate": "VALIDATE"
+  },
   "navigation": {
-    "title": "Hive Manager",
+    "title": "HIVE MANAGER",
     "calendar": "CALENDAR",
     "events": "EVENTS",
     "office": "OFFICE",
-    "logout": "Log Out"
+    "logout": "LOG OUT"
   },
   "calendar": {
-    "title": "Calendar"
+    "title": "CALENDAR"
   },
   "events": {
-    "title": "I'M EVENTS PAGE"
+    "title": "EVENTS",
+    "eventTab": {
+      "title": "EVENTS",
+      "incomingEvents": "INCOMING EVENTS",
+      "createEvent": "CREATE EVENT",
+      "eventTitle": "TITLE",
+      "eventType": "TYPE",
+      "startDate": "START DATE",
+      "endDate": "END DATE"
+    },
+    "tabPlacesTitle": "PLACES"
   },
   "officeKeys": {
     "title": "I'M OFFICE KEYS PAGE"
