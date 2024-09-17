@@ -29,12 +29,12 @@ model event_type {
 
 model invitation {
   event_id BigInt
-  user_id  BigInt
+  email    String  @db.VarChar
   status   String? @db.VarChar
   event    event   @relation(fields: [event_id], references: [event_id], onDelete: NoAction, onUpdate: NoAction)
-  users    users   @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  users    users   @relation(fields: [email], references: [email], onDelete: NoAction, onUpdate: NoAction)
 
-  @@id([user_id, event_id])
+  @@id([email, event_id])
 }
 
 model location {
@@ -58,14 +58,14 @@ model location_tag {
 
 model rating {
   location_id BigInt
-  user_id     BigInt
+  email       String    @db.VarChar
   rate        Float?
   comments    String?   @db.VarChar
   last_update DateTime? @db.Timestamp(6)
   location    location  @relation(fields: [location_id], references: [location_id], onDelete: NoAction, onUpdate: NoAction)
-  users       users     @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
+  users       users     @relation(fields: [email], references: [email], onDelete: NoAction, onUpdate: NoAction)
 
-  @@id([location_id, user_id])
+  @@id([location_id, email])
 }
 
 model tag {
@@ -74,11 +74,10 @@ model tag {
 }
 
 model users {
-  user_id    BigInt       @id @default(autoincrement())
+  email      String       @id @db.VarChar
   sub        String?      @db.VarChar
   first_name String?      @db.VarChar
   last_name  String?      @db.VarChar
-  email      String?      @db.VarChar
   status     String?      @db.VarChar
   invitation invitation[]
   rating     rating[]
